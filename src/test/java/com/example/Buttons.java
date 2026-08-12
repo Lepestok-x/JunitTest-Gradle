@@ -1,6 +1,7 @@
 package com.example;
 import com.example.configurations.Configuration;
 import com.example.configurations.ManagerDriver;
+import com.example.configurations.types.Value;
 import io.qameta.allure.Step;
 import org.junit.jupiter.api.*;
 import org.junit.jupiter.api.extension.RegisterExtension;
@@ -32,13 +33,13 @@ public class Buttons {
         driver.get(configuration.getUri());
         // Я не использую список, та как я проверяю самостоятельность теста: (Но жетально), но читаемо!
         String formated = configuration.actualButton("doubleClickBtn", null);
-        this.clickButtonValue(managerDriver.getWebDriverWait(), formated, "Double click me");
+        this.clickButtonValue(managerDriver.getWebDriverWait(), formated, Value.DOUBLE_CLICK);
         String result_a = this.getResult(managerDriver.getWebDriverWait(), configuration.getIdxPath("doubleClickMessage"));
         String formated_2 = configuration.actualButton("rightClickBtn", null);
-        this.clickButtonValue(managerDriver.getWebDriverWait(), formated_2, "Right click me");
+        this.clickButtonValue(managerDriver.getWebDriverWait(), formated_2, Value.RIGHT_CLICK);
         String result_b = this.getResult(managerDriver.getWebDriverWait(), configuration.getIdxPath("rightClickMessage"));
         String formated_3 = configuration.actualButton("text", "Click Me");
-        this.clickButtonValue(managerDriver.getWebDriverWait(), formated_3, "Click Me");
+        this.clickButtonValue(managerDriver.getWebDriverWait(), formated_3, Value.CLICK_ME);
         String result_g = this.getResult(managerDriver.getWebDriverWait(), configuration.getIdxPath("dynamicClickMessage"));
 
         // Проверяем значении на истину!
@@ -51,24 +52,24 @@ public class Buttons {
 
     }
     @Step("Нажимаем на кнопку - {2}")
-    void clickButtonValue(WebDriverWait webDriverWait, String value, String type){
-       if(value.isBlank() || type.isBlank()){
+    void clickButtonValue(WebDriverWait webDriverWait, String value, Value type){
+       if(value.isBlank() || type.getValue().isBlank()){
            Assertions.fail("Value not found");
            Assertions.fail("Type not found");
            return;
        }
         switch (type) {
-            case "Double click me" -> {
+            case Value.DOUBLE_CLICK -> {
                 WebElement button = webDriverWait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(value)));
                 Actions actions = managerDriver.getActions();
                 actions.doubleClick(button).perform();
             }
-            case "Right click me" -> {
+            case Value.RIGHT_CLICK -> {
                 WebElement button = webDriverWait.until(ExpectedConditions.elementToBeClickable(By.xpath(value)));
                 Actions actions = managerDriver.getActions();
                 actions.contextClick(button).perform();
             }
-            case "Click Me" -> webDriverWait.until(ExpectedConditions.elementToBeClickable(By.xpath(value))).click();
+            case Value.CLICK_ME -> webDriverWait.until(ExpectedConditions.elementToBeClickable(By.xpath(value))).click();
             default -> logger.warn("Unsupported type: {}", type);
         }
     }
