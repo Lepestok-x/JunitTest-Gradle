@@ -1,8 +1,4 @@
 package assured.example;
-
-import org.junit.jupiter.api.Tag;
-
-
-public class PlatformSsured {
+public class PlatformAssured {
 
 }
