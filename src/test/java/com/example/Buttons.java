@@ -54,8 +54,7 @@ public class Buttons {
     @Step("Нажимаем на кнопку - {2}")
     void clickButtonValue(WebDriverWait webDriverWait, String value, Value type){
        if(value.isBlank() || type.getValue().isBlank()){
-           Assertions.fail("Value not found");
-           Assertions.fail("Type not found");
+           Assertions.fail("Value not found or type not found");
            return;
        }
         switch (type) {

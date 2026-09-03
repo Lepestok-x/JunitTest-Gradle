@@ -1,5 +1,6 @@
 package com.example.configurations;
 import lombok.Getter;
+import lombok.NonNull;
 import lombok.Setter;
 import org.junit.jupiter.api.extension.AfterAllCallback;
 import org.junit.jupiter.api.extension.BeforeAllCallback;
@@ -22,7 +23,7 @@ public class ManagerDriver implements AfterAllCallback, BeforeAllCallback {
     private Actions actions;
 
     @Override
-    public void beforeAll(ExtensionContext context) throws Exception {
+    public void beforeAll(@NonNull ExtensionContext context) throws Exception {
         this.configuration = new Configuration();
         this.driver = new ChromeDriver();
         this.driver.manage().window().maximize();
@@ -32,7 +33,7 @@ public class ManagerDriver implements AfterAllCallback, BeforeAllCallback {
     }
 
     @Override
-    public void afterAll(ExtensionContext context) throws Exception {
+    public void afterAll(@NonNull ExtensionContext context) throws Exception {
         if(this.driver != null) {
             this.driver.quit();
             logger.info("Driver quitted");
