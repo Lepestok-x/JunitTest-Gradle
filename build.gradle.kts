@@ -15,6 +15,7 @@ dependencies {
     // Source: https://mvnrepository.com/artifact/com.fasterxml.jackson.core/jackson-core
     implementation("com.fasterxml.jackson.core:jackson-core:2.22.2")
     // Source: https://mvnrepository.com/artifact/tools.jackson.core/jackson-databind
+    implementation("ru.yandex.qatools.ashot:ashot:1.5.4")
     implementation("tools.jackson.core:jackson-databind:3.2.2")
     testImplementation("com.github.javafaker:javafaker:1.0.2")
     testImplementation(platform("org.junit:junit-bom:6.0.0"))
