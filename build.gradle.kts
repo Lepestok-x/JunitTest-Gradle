@@ -2,6 +2,7 @@ import org.gradle.api.tasks.testing.logging.TestExceptionFormat
 
 plugins {
     id("java")
+    id("io.qameta.allure") version "4.3.0"
 }
 
 group = "org.example"
@@ -10,8 +11,13 @@ version = "1.0-SNAPSHOT"
 repositories {
     mavenCentral()
 }
+allure {
+    version = "3.14.3"
+}
 
 dependencies {
+    // Source: https://mvnrepository.com/artifact/com.codeborne/selenide
+    implementation("com.codeborne:selenide:7.18.1")
     // Source: https://mvnrepository.com/artifact/com.fasterxml.jackson.core/jackson-core
     implementation("com.fasterxml.jackson.core:jackson-core:2.22.2")
     // Source: https://mvnrepository.com/artifact/tools.jackson.core/jackson-databind
