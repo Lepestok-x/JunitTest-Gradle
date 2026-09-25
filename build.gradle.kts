@@ -3,6 +3,7 @@ import org.gradle.api.tasks.testing.logging.TestExceptionFormat
 plugins {
     id("java")
     id("io.qameta.allure") version "4.3.0"
+    id("org.gradle.test-retry") version "1.5.8"
 }
 
 group = "org.example"
@@ -16,11 +17,10 @@ allure {
 }
 
 dependencies {
-    // Source: https://mvnrepository.com/artifact/com.codeborne/selenide
+    testImplementation("org.junit-pioneer:junit-pioneer:2.3.0")
+    testImplementation("io.qameta.allure:allure-junit5:2.35.5")
     implementation("com.codeborne:selenide:7.18.1")
-    // Source: https://mvnrepository.com/artifact/com.fasterxml.jackson.core/jackson-core
     implementation("com.fasterxml.jackson.core:jackson-core:2.22.2")
-    // Source: https://mvnrepository.com/artifact/tools.jackson.core/jackson-databind
     implementation("ru.yandex.qatools.ashot:ashot:1.5.4")
     implementation("tools.jackson.core:jackson-databind:3.2.2")
     testImplementation("com.github.javafaker:javafaker:1.0.2")
@@ -50,4 +50,5 @@ tasks.test {
         showStandardStreams = true;
         exceptionFormat = TestExceptionFormat.FULL;
     }
+    maxHeapSize = "2g"
 }
