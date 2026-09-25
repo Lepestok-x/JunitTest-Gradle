@@ -6,6 +6,8 @@ import java.util.function.Supplier;
 
 public class Main {
     static void main() throws InterruptedException {
-
+  for(int i = 1; i > -1; i++) {
+      System.out.println(i);
+  }
     }
 }

@@ -2,22 +2,24 @@ package screenshots;
 import org.junit.jupiter.api.*;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
-@Tag("tables")
+@Tag("Tables")
 @DisplayName("WebTables")
 public class WebTables {
-    private ListBy listBy;
+    private Bys bys;
     private WebDriver driver;
     @BeforeEach
     void init() {
-        listBy = new ListBy();
+        bys = new Bys();
         driver = new ChromeDriver();
         driver.get("https://demoqa.com/webtables");
     }
 
     @Test
     void webTablesTest() {
-        ClientWebTables clientWebTables = new ClientWebTables(driver, listBy);
-        clientWebTables.writeField(10, FakerData::arrayData);
+        ClientWebTables clientWebTables = new ClientWebTables(driver, bys);
+        clientWebTables.writeFieldInfinity(3, FakerData::arrayData);
+        clientWebTables.searchInTable(FakerData::getNames);
+        clientWebTables.clearText();
     }
     @AfterEach
     void quit() {
