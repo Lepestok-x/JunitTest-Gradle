@@ -17,9 +17,14 @@ public class WebTables {
     @Test
     void webTablesTest() {
         ClientWebTables clientWebTables = new ClientWebTables(driver, bys);
-        clientWebTables.writeFieldInfinity(3, FakerData::arrayData);
+        clientWebTables.scroll(200);
+        clientWebTables.writeFieldInfinity(2, FakerData::arrayData);
         clientWebTables.searchInTable(FakerData::getNames);
         clientWebTables.clearText();
+        clientWebTables.secondary(Button.Next);
+        clientWebTables.secondary(Button.First);
+        clientWebTables.secondary(Button.Last);
+        clientWebTables.secondary(Button.Previous);
     }
     @AfterEach
     void quit() {

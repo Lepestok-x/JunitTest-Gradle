@@ -15,7 +15,7 @@ public class Bys {
     private final By addButton = By.xpath(String.format(xpathButton, "addNewRecordButton"));
     private final By submitButton = By.xpath(String.format(xpathButton, "submit"));
     private final By search = By.xpath(String.format(xpathInput, "searchBox"));
-    private final By last = By.xpath(String.format(xpathClass, "Las"));
+    private final By last = By.xpath(String.format(xpathClass, "Last"));
     private final By first = By.xpath(String.format(xpathClass, "First"));
     private final By next = By.xpath(String.format(xpathClass, "Next"));
     private final By previous = By.xpath(String.format(xpathClass, "Previous"));

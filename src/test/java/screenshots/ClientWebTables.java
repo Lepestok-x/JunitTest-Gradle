@@ -69,8 +69,21 @@ public class ClientWebTables extends WebTablesParent {
             search(bys.getSearch(), name);
         }
     }
-
     public void clearText() {
         clear(bys.getSearch());
+    }
+    public void secondary(Button button) {
+       switch (button) {
+           case First -> buttonSecondary(bys.getFirst());
+           case Previous -> buttonSecondary(bys.getPrevious());
+           case Next -> {
+               int step = getOf(bys.getOf());
+               for(int i = 1; i <= step; i++) {
+                   buttonSecondary(bys.getNext());
+               }
+           }
+           case Last -> buttonSecondary(bys.getLast());
+           default -> throw new IllegalArgumentException("Error button is not found");
+       }
     }
 }
