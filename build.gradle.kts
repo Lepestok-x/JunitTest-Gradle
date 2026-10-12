@@ -17,6 +17,7 @@ allure {
 }
 
 dependencies {
+    testImplementation("org.mockito:mockito-junit-jupiter:5.24.0")
     testImplementation("org.junit-pioneer:junit-pioneer:2.3.0")
     testImplementation("io.qameta.allure:allure-junit5:2.35.5")
     implementation("com.codeborne:selenide:7.18.1")
