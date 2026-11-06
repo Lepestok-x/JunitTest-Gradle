@@ -1,7 +1,9 @@
 package com.example.links.factory;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+
 public class Expected {
     private final List<String> expected = new ArrayList<>();
     public Expected() {
@@ -16,5 +18,4 @@ public class Expected {
     public List<String> getExpected() {
         return Collections.unmodifiableList(expected);
     }
-
 }

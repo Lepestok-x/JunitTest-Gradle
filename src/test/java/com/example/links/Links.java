@@ -4,15 +4,11 @@ import com.example.links.factory.Expected;
 import com.example.links.factory.Link;
 import com.example.links.factory.LinkSubsidiary;
 import org.junit.jupiter.api.*;
-import org.junit.jupiter.params.ParameterizedTest;
-import org.junit.jupiter.params.provider.MethodSource;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 
-import java.util.List;
-
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertLinesMatch;
 
 @Tag("Links")
 @DisplayName("Test links")
@@ -34,15 +30,7 @@ public class Links {
         subsidiary.removeTab();
         subsidiary.clickResponded();
         assertEquals(expected.getExpected().size(), subsidiary.actualResult().size());
-        // Двойная пробежка:) O(n2)
-        // Тут ошибка, данные не совпадают, будем фиксить ошибку.
-        for(String expectedResult : expected.getExpected()) {
-            String expected = expectedResult;
-            for(String actualResult : subsidiary.actualResult()) {
-                String actual = actualResult;
-                assertEquals(expected, actual);
-            }
-        }
+        assertLinesMatch(expected.getExpected(), subsidiary.actualResult(), "Error, data did not match");
     }
 
     @AfterEach

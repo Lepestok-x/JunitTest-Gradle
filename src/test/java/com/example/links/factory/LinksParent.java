@@ -1,5 +1,4 @@
 package com.example.links.factory;
-
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.interactions.Actions;
@@ -21,7 +20,10 @@ public class LinksParent {
         actions = new Actions(driver);
     }
     public void clickLink(By xpath) {
-        wait.until(ExpectedConditions.elementToBeClickable(xpath)).click();
+       wait.until(ExpectedConditions.presenceOfElementLocated(xpath)).click();
+    }
+    public String linkText(By xpath) {
+        return wait.until(ExpectedConditions.presenceOfElementLocated(xpath)).getText();
     }
     public void newTabReturnToCurrent() {
         List<String> tabs = new ArrayList<>(driver.getWindowHandles());
